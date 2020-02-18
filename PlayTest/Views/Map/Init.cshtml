@@ -1,0 +1,17 @@
+﻿<canvas id="mainMap" width="800" height="600"></canvas>
+<script type="text/javascript">
+    var canvas = document.getElementById('mainMap');
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        for (var i = 0; i < 80; i++) {
+            for (var j = 0; j < 60; j++) {
+                ctx.beginPath();
+                ctx.lineWidth = 0.3;
+                var x = i * 20 + 10;
+                var y = j * 20 + 10;
+                ctx.arc(x, y, 10, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+        }
+    }
+</script>

@@ -1,0 +1,43 @@
+﻿@model UserDTO
+
+@{
+    ViewData["Title"] = "Авторизация|регистрация";
+}
+
+<h2>Война бактерий</h2>
+@if (Model != null && Model.Login != null && !Model.StateAuth)
+{
+    <h6 style="color: red;">Игрока <b>@Model.Login</b> мы не знаем</h6>
+}
+
+<canvas id="preAuthCanvas" width="1200" height="600" style="position: absolute; z-index: -1;"></canvas>
+
+<form name="mainAuth" id="mainAuth" method="post" action="/Authorization/Sign">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Логин</label>
+        <input type="text" class="form-control" id="login" name="login" placeholder="Логин" value="@Model.Login">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Пароль</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Пароль" vSalue="@Model.Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Авторизоваться или создать акк</button>
+</form>
+
+<script type="text/javascript">
+    var canvas = document.getElementById('preAuthCanvas');
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < 5; j++) {
+                var preImage = new Image();
+                preImage.src = '/preImage/pre' + (j + 1) + '.png';
+                preImage.onload = function () {
+                    var x = Math.random() * canvas.clientWidth;
+                    var y = Math.random() * canvas.clientHeight;
+                    ctx.drawImage(this, x, y, 25, 25);
+                }
+            }
+        }
+    }
+</script>
